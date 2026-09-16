@@ -1,42 +1,34 @@
 '''
-RAMPER 
-R - restate the problem
-    return the longest subtstring 
-    that contians the same letter 
-    your a given a k that allows you to skip a character that doens't match the current subtring inwdow 
-A - ask any qiestions 
-    none right now 
-M - make an example 
-    "EMII" k = 1 
-    ans = 3 
-    "CHARLENE" k = 3
-    4 
-P - pick a pattern
-    build frequency hashmnap for a window 
-    keep increasing window to the right if k > 0 k times
-    keep track of longest window thats in the window and doesn't over k times 
-    ABAB
-       r
-       l
-    count = k = 0
-    AABABBA
-    l
-       r
-    
-    count = k = 0
-    mL = 3 
+UMPIRE
+U:
+    given a strings s and integer k that allows skips basically 
+    return the lenth of the longest substring that 
+    that contain the same letter
+M:
+    hashmap for frequenct character 
+    sliding window
+P:
+    keep track of max frequenct chcarcater in string
+
+    utilize two pointers
+    while we find that the most frequenct chacter - size of window is greater than k 
+    remove left chacacter from the hashmp 
+    if left chacracter == 0 del
+    move left 1 
 '''
 def characterReplacement(s,k):
-    window = {}
-    maxFreq = 0
-    maxLongest = 0
     left = 0
+    myMap = {}
+    maxLength = 0
+
     for right in range(len(s)):
-        window[s[right]] = window.get(s[right],0) + 1
-        maxFreq = max(maxFreq, window[s[right]])
-        while ((right - left) + 1) - maxFreq > k:
-            window[s[left]] -= 1 
+        myMap[s[right]] = myMap.get(s[right],0) + 1
+        maxFreq = max(maxFreq, myMap[s[right]])
+        while ((right - left) + 1) - maxFreq  > k:
+            myMap[s[left]] -= 1
+            if myMap[s[left]] == 0:
+                del myMap[s[left]]
             left += 1
-        maxLongest = max(maxLongest, ((right - left) + 1))
-    return maxLongest
+        maxLength = max(maxLength, ((right - left) + 1))
+
 

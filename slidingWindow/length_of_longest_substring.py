@@ -1,56 +1,33 @@
 '''
-RAMPER
-R - restate the problem 
-    given a string 
-    return the longest substring without any dupoleicate fcharacters 
-A - ask any question 
-    no questions currentlyt 
-M - make an example 
-    "emilovescoding"
-    ans = 15
-    ""
-    ans = 0
-P - pick a pattern
-    "abcabcbb"
-       i 
-     set = {a,b,c}
-     "pwwkew"
-          i
-      set = {p,w,k,e}
-      would be 4 
-      but thtas not right awsner 
-      as we've broken our window to add to our set 
-      the correct awnser is 3 "wke"
-E - explain the plan
-    we will have two pointers 
-    "pwwkew"
-     l r
-     if r is the same as r - 1 or better yet if r is in a set
-     what if we had a set as our window any time we see ac hactere we've already added to our set clear the set then 
-     slide l to r 
-        add to longest length max tracker 
-    return longest length substring 
-pwwkew
-     l
-     r
-w = {}
-longest = 3 
+UMPIRE
+U:
+    given string s 
+    return the length of the longest substring 
+    without repeating characters
+M: 
+    sliding window 
+    hashset
+P:
+    creaste hashset
+    utilize two pointers
+    continouly move right
+    add to set
+    keep track of the maxSubstring 
+    if we see a characters thats already in our set
+    update left to start at right
+    clear the set
+    repeat the algorithm
 '''
 def lengthOfLongestSubstring(s):
     window = set()
-    left = 0
-    longest = 0
-    for right in range(len(s)):
-        # need to loop through window and remove all the characters and reset 
-        if s[right] in window:
+    left, right = 0,0
+    maxLength = 0
+    while right < len(s):
+        if letter in window:
+            maxLength = max(maxLength, ((right-left) + 1))
+            left = right
             window.clear()
-            left = right 
-            
-        longest = max(longest, (right - left) + 1)
         window.add(s[right])
-    return longest
+        right += 1
+    return maxLength
 
-
-        
-
-    

@@ -1,24 +1,30 @@
-# O(n) time no space is used
+'''
+UMPIRE
+U:
+   a string is a palindrome if and only if it reads the smae
+   forwards and backwards
+   convert all upper case letters to lower case letters too
+   you can skip if the character is non alphanumreic
+   
+M - two pointers
+P - 
+   because the string can contain uppercase letters just make it into all lowercase letters 
+   utilize two pointers each at one end 
+   if we see a non alphanuremic character skip it
+I - 
+'''
 
 def isPalindrome(s):
-
-   i,j = 0, len(s) - 1
-
-   while i < j:
-
-      if not s[i].isalphanum():
-         i += 1
-         continue 
-
-      if not s[j].isalphanum():
-         j -= 1
-         continue 
-
-      if s[i].lower() != s[j].lower():
+   left, right = 0, len(s)-1
+   lowerS = s.lower()
+   while left < right:
+      if not lowerS[left].isalnum():
+         left += 1
+      if not lowerS[right].isalnum():
+         right -= 1
+      if lowerS[left] != lowerS[right]:
          return False
-
-      i += 1
-      j -= 1
-
-   return True
+      left += 1
+      right -= 1 
+   return True 
 
