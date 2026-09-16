@@ -1,8 +1,31 @@
-from arrays.top_k_frequent import topKFrequent
-if __name__ == "__main__":
-   
+from slidingWindow.permutation import checkInclusion
 
-   #inputs = [((1,1,1,2,2,3), 2)]
-   inputs = [([1,1,1,2,2,3],2),([1],1),([1,2,1,2,1,2,3,1,3,2],2)]
-   for input in inputs:
-      print(f"input array {input}", topKFrequent(input[0],input[-1]))
+def test_case(input, s2,expected):
+    actual = checkInclusion(input,s2)
+    passed = actual == expected
+
+    print("input:   ", input,s2)
+    print("actual:  ", actual)
+    print("expected:", expected)
+    print("passed:  ", passed)
+    print()
+
+
+if __name__ == "__main__":
+
+    tests = [
+        (
+            "ab",
+            "eidbaooo",
+            True
+        ),
+        (
+            "ab",
+            "eidboaoo",
+            False
+        )
+
+    ]
+
+    for input,s2, expected in tests:
+        test_case(input,s2,expected)

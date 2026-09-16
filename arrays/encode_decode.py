@@ -1,66 +1,72 @@
 '''
-RAMP
-
+RAMPER
 R - restate the problem
-    write an algoritm for both encode to encode and decode to decode strings
-    any character could appear 
-    no libraries allwoed 
+design a class with methods that 
+enocde : sort a list of strings in a formulated pattern
+decode : decode the original list 
 
-A - ask questions
-    how big could the input get so any time/space fcosntraints? 
-M - make examples
-    input = ['emi', 'loves', 'chicken']
-    # could encode with 5's in between emi55555loves5555chicken
-    output = ['emi', 'loves', 'chicken']
-    
-    would be wrong because 5 is apart of 256 ascii content too 
-    meaning you could get an output of all 5's 
-P - pick a pattern 
-    two pointers or just string manipulation to be honest 
-E - explain in plain english 
-    given this example
-    input = ['emi', 'loves', 'chicken']
-    emi#3loves#5chicken#7
-               i
+A - ask a question
+none currently 
+
+M - make an example 
+    input = ["emi"]
+    encode = "e#m#i"
+    decode = emi
+
+P - pick a pattern
+    two pointers + string methods 
+E - explain the plan 
+   ['emi', 'loves','to', 'code'] 
+   encode = 3emi#5loves#2to#4code#
+   decode = 3emi#5loves#2to#4code# == ['emi', 'loves','to', 'code'] 
+
+   read the first number move r that many times until we see a #
+    insert the length of letters which should be avalid word into a res list
+   than repeate the process once we see a #
+   reset i once j len thats infront of word times  
+   j need to be moved + 1 to begin at number that ocunts how many times it needs to move 
+   ['3','4','##','5']
+   enode = 13#14#2###15#
+   decode = 13#14#2###15#
                         j
-    we will encodde with the message above
-    utilize two pointers 
-    once j hits a number after # move i that many times
-    once i hits # have i and j point at the same thing + 1 to correctly move on to the next word 
-
-    output = ['emi', 'loves', 'chicken']
-R - review 
-
-
-
-    input = ['emi', 'loves', 'chicken']
-    emi#3loves#5chicken#7
-    i
-       j
+                        i
+            [3,4]
+  sepaerate each word with len(word) + word + #
+  have i start at number so j knows how many times to move
+  post j reaching the len of word and a # is seen 
+  have i move to j + 1 to find the number after delimeter # 
+  and have j move to i + 1
+  repeate the algo
 '''
 def encode(strs):
     res = ''
     for word in strs:
-        res += (str(len(word)) + '#' + word)
-    print('encode res',res)
+        res += str(len(word)) + '#' + word
     return res
 
-
+'''
+'13#abcdefghijklm'
+ i
+  js             length
+'''
 def decode(s):
+    ans = []
     i,j = 0,0
-    word = ''
-    res = []
     while j < len(s):
         while s[j] != '#':
             j += 1
-        count = int(s[i:j])
-        i = j + 1
-        while count > 0:
-            word += s[i]
-            i += 1
-            count -= 1
+
+        length = s[i:j]
+        length = int(length)
+
+        wordStart = j + 1
+
+        wordEnd = j + 1 + length
+        ans.append(s[wordStart:wordEnd])
+        i = wordEnd
         j = i
-        res.append(word)
-        word = ''
-    print('res decode', res)
-    return res 
+    return ans
+
+
+
+
