@@ -18,7 +18,7 @@ E - explain the plan
     adjust left to point to right 
 '''
 def maxSlidingWindow(nums,k):
-left = 0
+    left = 0
     res = []
     for right in range(len(nums)):
 
