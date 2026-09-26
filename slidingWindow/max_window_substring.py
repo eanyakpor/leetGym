@@ -7,7 +7,7 @@ U:
     and return that in an array
 M:
     sliding window
-P:
+    10|P:
     utilzie two pointers
     keep track of max number visited
     if and only if the size of the window is > k 
@@ -28,4 +28,3 @@ def maxSlidingWindow(nums,k):
             maxValue = float('-inf')
         maxValue = max(maxValue, nums[right]
     return res
-

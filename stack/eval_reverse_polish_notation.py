@@ -32,18 +32,15 @@ def evalRPN(tokens):
             # its a number
             stack.append(int(char))
         else:
-            if stack and stack[-1]:
-                rightNum = stack.pop()
-                leftNum = stack.pop()
+            rightNum = stack.pop()
+            leftNum = stack.pop()
 
-                if char == '+':
-                    stack.append((leftNum + rightNum))
-                elif char == '-':
-                    stack.append((leftNum - rightNum))
-                elif char == '*':
-                    stack.append((leftNum * rightNum))
-                else:
-                    stack.append(int(leftNum / rightNum))
+            if char == '+':
+                stack.append((leftNum + rightNum))
+            elif char == '-':
+                stack.append((leftNum - rightNum))
+            elif char == '*':
+                stack.append((leftNum * rightNum))
+            else:
+                stack.append(int(leftNum / rightNum))
     return stack[-1]
-
-

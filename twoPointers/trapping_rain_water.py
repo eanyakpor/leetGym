@@ -35,4 +35,3 @@ def trap(height):
          j -= 1
 
    return total
-
